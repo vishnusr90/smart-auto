@@ -1,0 +1,29 @@
+
+table {
+    display: grid;
+    grid-template-columns: 250px 250px 250px 250px 250px 250px 250px;
+    padding-left: 20%;
+}
+
+table tr th {
+    border: 1px solid black;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    padding-right: 86px;
+}
+
+/* table th {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    padding-right: 80px;
+} */
+
+car-list {
+    margin-left: 20%;
+}
+
+car-list tr {
+    border: 2px solid red;
+}

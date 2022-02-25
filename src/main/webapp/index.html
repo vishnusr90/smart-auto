@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Auto</title>
+    <script type="module" src="./js/components/car-list-container/car-list-container.js"></script>
+</head>
+<body>
+    <h2>Smart Auto</h2>
+    <car-list-container></car-list-container>
+    <script type="module">
+        const container = document.querySelector('car-list-container');
+        container.load();
+    </script>
+</body>
+</html>
