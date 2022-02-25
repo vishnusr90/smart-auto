@@ -43,7 +43,6 @@ public class InventoryController {
 
     @DeleteMapping("/admin/car/delete/{id}")
     public void deleteCar(@PathVariable String id) {
-        System.out.println("Deleting car id "+id);
         carService.deleteCar(id);
     }
 
