@@ -1,0 +1,17 @@
+Assignment - Car Inventory Management & Sales
+
+Use Case
+
+Build a simple application for the use case of car inventory management & sales.
+
+The application shall cater to the below users & their requirements;
+
+·           Buyers – The users should be able retrieve list of available cars and buy cars.
+
+·           Admin – The users should be able to update stock. (Add or remove cars from the Inventory anytime)
+
+Requirements
+
+Implement the solution as a Spring Boot Microservice. The inventory data shall be in-memory.
+Implement the above use case considering object oriented principles and development best practices. The implementation should be a tested working executable.
+The project codes to be zipped and shared back to us for offline review by Monday, 28 February at 6pm.
