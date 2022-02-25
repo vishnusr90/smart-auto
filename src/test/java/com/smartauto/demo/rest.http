@@ -1,0 +1,29 @@
+
+GET http://localhost:3000/smart-auto/api/test HTTP/1.1
+
+###
+
+POST http://localhost:3000/smart-auto/api/create
+Content-Type: application/json
+
+{
+    "brand": "TTT",
+    "model": "asdfasd",
+    "topSpeed": 323330,
+    "price": 134000,
+    "year": 2007
+}
+
+###
+
+PUT http://localhost:3000/smart-auto/api/update
+Content-Type: application/json
+
+{
+    "id": "40289db77f2bec30017f2bec83690000", 
+    "year": "2017"
+}
+
+###
+
+DELETE http://localhost:3000/smartauto/api/delete/1
