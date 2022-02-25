@@ -26,7 +26,6 @@ const carRow = (car) => html`
 `;
 
 const renderButton = () => {
-    console.log('button');
     return html`
         
     `;
@@ -43,13 +42,11 @@ export class CarList extends BaseComponent {
 
     async load() {
         const carList = await loadAllCars();
-        console.log('Car list ', carList);
         this.init(htmlTemplate(carList));
     }
 
     loadEventListeners() {
         this.on('button', 'click', (e) => {
-            console.log('Clicked', e.target.getAttribute('id'));
             this.triggerEvent('delete-car', {id: e.target.getAttribute('id')})
         });
     }

@@ -33,7 +33,6 @@ export class CarListContainer extends BaseComponent {
     }
 
     async load() {
-        console.log('inside container');
         await this.init(htmlTemplate());
         await this.$$('car-list').load();
     }
@@ -41,9 +40,7 @@ export class CarListContainer extends BaseComponent {
     loadEventListeners() {
         this.on('car-list', 'delete-car', async (e) => {
             const carId = e.detail.id;
-            console.log('Deleting carid ', carId);
             await deleteCar(carId);
-            console.log('deleted car !!!!!', carId);
             await this.$$('car-list').load();
         });
     }
