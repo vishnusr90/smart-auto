@@ -26,9 +26,13 @@ const htmlTemplate = () => {
                 <input id="color" type="text" placeholder="Enter color of car"/></br>
             </div>
 
+            <div class="row">
+                <div class="heading">Price</div>  
+                <input id="price" type="text" placeholder="Enter price of car"/></br>
+            </div>
+
             <input id="add-car" type="submit" value="Add"/>  
         </div>
-        
     `;
 };
 
@@ -49,19 +53,24 @@ export class NewCarComponent extends BaseComponent {
     loadEventListeners() {
         
         this.$$('#add-car').addEventListener('click', async () => {
-            const brand = this.$$('#brand').value;
-            const model = this.$$('#model').value;
-            const year = this.$$('#year').value;
-            const color = this.$$('#color').value;
+            const brand = this.$$('#brand').value || '';
+            const model = this.$$('#model').value || '';
+            const year = this.$$('#year').value || '';
+            const color = this.$$('#color').value || '';
+            const price = this.$$('#price').value || '';
             const details = {
                 brand,
                 model,
                 year,
-                color
+                color,
+                price
             };
             console.log(details);
-            const res = await addNewCar(details);
-            console.log(res);
+            try {
+                const res = await addNewCar(details);
+            } catch(e) {
+                console.log(e);
+            }
         });
     }
 }
