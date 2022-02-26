@@ -23,7 +23,6 @@ public class UserController {
     
     @GetMapping("/role")
     public Collection<? extends GrantedAuthority> get(Authentication authentication) {
-        authentication.getAuthorities().stream().forEach(it -> System.out.print(it));
         return authentication.getAuthorities();
     }
 
