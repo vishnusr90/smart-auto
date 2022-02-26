@@ -1,0 +1,11 @@
+
+.heading {
+    font-size: 20px;
+    padding-right: 50px;
+    width: 100px;
+}
+
+.row {
+    display: flex;
+    padding-bottom: 20px;
+}
