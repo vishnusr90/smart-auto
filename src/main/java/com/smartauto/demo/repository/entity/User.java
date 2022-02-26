@@ -9,10 +9,16 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "User")
 public class User {
     @Id
@@ -28,5 +34,4 @@ public class User {
 
     private LocalDate modifiedOn;
 
-    private String role;
 }
