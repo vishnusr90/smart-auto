@@ -2,6 +2,7 @@ package com.smartauto.demo.service;
 
 import java.util.*;
 
+import com.smartauto.demo.exception.UserNotFoundException;
 import com.smartauto.demo.repository.UserRepository;
 import com.smartauto.demo.repository.dto.UserDTO;
 import com.smartauto.demo.repository.entity.User;
@@ -25,6 +26,8 @@ public class UserService {
                 .password(userDTO.getPassword())
                 .build();
             userRepository.save(user);
+        } else {
+
         }
     }
 
@@ -33,7 +36,7 @@ public class UserService {
         if (userOptional.isPresent()) {
             userRepository.deleteById(id);
         } else {
-            // throw UserNotFoundException();
+             throw new UserNotFoundException("User not found");
         }
     }
 }
