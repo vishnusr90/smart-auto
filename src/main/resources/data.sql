@@ -57,20 +57,21 @@ CREATE TABLE USER (
     id varchar(225) primary key,
     username varchar(10) not null,
     password varchar(20) not null,
+    firstname varchar(20) not null,
     created_on timestamp
 );
 
-INSERT INTO USER (id, username, password, created_on) 
-VALUES (1, 'admin','admin', now());
+INSERT INTO USER (id, username, password, firstname, created_on) 
+VALUES (1, 'admin','admin', 'Admin', now());
 
-INSERT INTO USER (id, username, password, created_on) 
-VALUES (2, 'user', 'pass', now());
+INSERT INTO USER (id, username, password, firstname, created_on) 
+VALUES (2, 'user', 'pass', 'User', now());
 
-INSERT INTO USER (id, username, password, created_on) 
-VALUES (3, 'user1', 'pass', now());
+INSERT INTO USER (id, username, password, firstname, created_on) 
+VALUES (3, 'user2', 'pass', 'User 2', now());
 
-INSERT INTO USER (id, username, password, created_on) 
-VALUES (4, 'user2', 'pass', now());
+INSERT INTO USER (id, username, password, firstname, created_on) 
+VALUES (4, 'user3', 'pass', 'User 3', now());
 
 --------------------------------------------------------------------------------------
 CREATE TABLE SALES (
