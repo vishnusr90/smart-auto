@@ -3,8 +3,12 @@ package com.smartauto.demo.controller;
 import com.smartauto.demo.repository.dto.CarDTO;
 import com.smartauto.demo.service.InventoryService;
 
+import java.security.Principal;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,23 +35,29 @@ public class InventoryController {
         return carService.getAllCars();
     }
 
-    @PostMapping("/admin/car/create")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/car")
     public void createCar(@RequestBody CarDTO carDTO) {
         carService.addCar(carDTO);
     }
 
-    @PutMapping("/admin/car/update")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/car")
     public void updateCar(@RequestBody CarDTO carDTO) {
-        carService.updateCar(carDTO);
+        // carService.updateCar(carDTO);
     }
 
-    @DeleteMapping("/admin/car/delete/{id}")
-    public void deleteCar(@PathVariable String id) {
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/car/{id}")
+    public void deleteCar(@PathVariable String id, Principal user) {
+        System.out.println(user.getName());
         carService.deleteCar(id);
     }
 
-    @PutMapping("/buy/{id}")
-    public void buyCar() {
+    @PreAuthorize("hasRole('ROLE_BUYER')")
+    @PutMapping("/car/buy/{id}")
+    public void buyCar(@PathVariable String id) {
+        System.out.println("Going to buy");
         carService.buyCar();
     }
     
