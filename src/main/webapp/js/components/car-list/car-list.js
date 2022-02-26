@@ -3,11 +3,11 @@ import { BaseComponent, html} from '../../base-component.js';
 
 const htmlTemplate = (carList) => {
     if (carList.length == 0) {
-        return html``;
+        return html`<div></div>`;
     }
     return html`
         <table>
-        ${carList.map(car => carRow(car))}
+            ${carList.map(car => carRow(car))}
         </table>    
     `;
  };
@@ -23,14 +23,9 @@ const carRow = (car) => html`
         <td id="remaining" class="hide">${car.remaining}</td>
         <td><button id=${car.id} class="buy">Buy Now</button></td>
         <td id="delete"><button id=${car.id} class="delete">Delete</button></td>
+        <td id="re-stock"><button id=${car.id} class="re-stock">Re Stock</button></td>
     </tr>
 `;
-
-const renderButton = () => {
-    return html`
-        
-    `;
-};
 
 export class CarList extends BaseComponent {
     constructor() {
@@ -38,7 +33,6 @@ export class CarList extends BaseComponent {
     }
     
     connectedCallback() {
-        console.log('connected back');
         this.loadEventListeners();
     }
 
@@ -49,33 +43,32 @@ export class CarList extends BaseComponent {
         this.init(htmlTemplate(carList));
 
         if (roles[0].authority === 'ROLE_ADMIN') {
-            console.log('is an admin');
             this.$$$('.buy').forEach(b => b.classList.add('hide'));
             this.$$$('#remaining').forEach(r => r.classList.remove('hide'));
         } else {
-            console.log('is a buyer');
-            const remaining = this.$$('#car-row').dataset.remaining;
             this.$$$('.delete').forEach(b => b.classList.add('hide'));
+            this.$$$('.re-stock').forEach(b => b.classList.add('hide'));
         }
     }
 
     loadEventListeners() {
-        console.log('event listeners');
         this.on('button', 'click', (e) => {
-            const buttonType = e.target.classList;
-            console.log(buttonType);
+            const buttonType = e.target.classList.value || '';
             const carId = e.target.getAttribute('id').split('-')[0];
 
-            if (buttonType.value === 'delete') {
-                this.triggerEvent('delete-car', {id: carId});
-            } else {
-                this.triggerEvent('buy-car', {id: carId})
+            switch(buttonType) {
+                case 'delete':
+                    this.triggerEvent('delete-car', {id: carId});
+                    break;
+                case 'buy':
+                    this.triggerEvent('buy-car', {id: carId})
+                    break;
+                case 're-stock': 
+                    this.triggerEvent('restock-car', {id: carId})
+                    break;
             }
-            
         });
     }
-
-
 }
 
 window.customElements.define('car-list', CarList);
