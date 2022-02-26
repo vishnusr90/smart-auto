@@ -6,11 +6,14 @@
     <script type="module" src="./js/components/car-list-container/car-list-container.js"></script>
 </head>
 <body>
-    <h2>Smart Auto</h2>
+    <h1>Smart Auto</h1>
+    <button>Logout</button>
     <car-list-container></car-list-container>
     <script type="module">
         const container = document.querySelector('car-list-container');
         container.load();
+
+        document.querySelector('button').addEventListener('click', () => location.href = '/smart-auto/logout');
     </script>
 </body>
 </html>
