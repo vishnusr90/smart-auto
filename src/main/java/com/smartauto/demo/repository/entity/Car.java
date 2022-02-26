@@ -2,12 +2,9 @@ package com.smartauto.demo.repository.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -35,15 +32,9 @@ public class Car {
 
     private String color;
 
-    private String carType;
-
     private Integer price;
 
     private String year;
-
-    // @OneToOne(cascade = CascadeType.ALL)
-    // @JoinColumn(name = "car_inventory_id", referencedColumnName = "id")
-    // private CarInventory inventory;
 
     private LocalDate createdOn;
 
