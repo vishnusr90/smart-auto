@@ -25,11 +25,6 @@ public class InventoryController {
     @Autowired
     private InventoryService carService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "Ok running !";
-    }  
-
     @GetMapping("/cars")
     public List<CarDTO> getAllCars() {
         return carService.getAllCars();
@@ -42,23 +37,9 @@ public class InventoryController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/car")
-    public void updateCar(@RequestBody CarDTO carDTO) {
-        // carService.updateCar(carDTO);
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/car/{id}")
     public void deleteCar(@PathVariable String id, Principal user) {
         System.out.println(user.getName());
         carService.deleteCar(id);
     }
-
-    @PreAuthorize("hasRole('ROLE_BUYER')")
-    @PutMapping("/car/buy/{id}")
-    public void buyCar(@PathVariable String id) {
-        System.out.println("Going to buy");
-        carService.buyCar();
-    }
-    
 }
