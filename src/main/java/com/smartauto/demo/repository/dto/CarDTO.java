@@ -13,9 +13,9 @@ public class CarDTO {
     String id;
     String brand;
     String model;
+    String color;
     String carType;
     String year;
-    Integer topSpeed;
     Integer price;
-    String status;
+    Integer remaining;
 }
