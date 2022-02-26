@@ -1,4 +1,5 @@
-import { deleteCar, loadAllCars } from '../../../service/car-service.js';
+import { buyCar, deleteCar } from '../../../service/car-service.js';
+import { getCurrentRole } from '../../../service/user-service.js';
 import { BaseComponent, html} from '../../base-component.js';
 import '../car-list/car-list.js';
 
@@ -11,10 +12,9 @@ const htmlTemplate = () => {
                 <th>Brand</th>
                 <th>Model</th>
                 <th>Year</th>
-                <th>Top Speed (km/hr)</th>
-                <th style="width: 50px;">Price</th>
-                <th>Status</th>
-                <th></th>
+                <th>Color</th>
+                <th>Price</th>
+                <th class="hide">Remaining</th>
             </tr>
         </table>
         </div>
@@ -26,22 +26,39 @@ export class CarListContainer extends BaseComponent {
 
     constructor() {
         super();
+        // (async () => {
+        //     this.roles = await getCurrentRole();
+        //     console.log(this.roles);
+        // })();
     }
 
     connectedCallback() {
         this.loadEventListeners();
+        
     }
 
     async load() {
         await this.init(htmlTemplate());
-        await this.$$('car-list').load();
+        this.roles = await getCurrentRole();
+
+        if (this.roles[0].authority === 'ROLE_ADMIN') {
+            console.log('Admin so showing remaining');
+            this.$$('.hide').classList.remove('hide');
+        }
+        await this.$$('car-list').load(this.roles);
     }
 
     loadEventListeners() {
         this.on('car-list', 'delete-car', async (e) => {
             const carId = e.detail.id;
             await deleteCar(carId);
-            await this.$$('car-list').load();
+            await this.$$('car-list').load(this.roles);
+        });
+
+        this.on('car-list', 'buy-car', async (e) => {
+            const carId = e.detail.id;
+            await buyCar(carId);
+            await this.$$('car-list').load(this.roles);
         });
     }
 }

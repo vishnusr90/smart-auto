@@ -13,17 +13,6 @@ table tr th {
     padding-right: 86px;
 }
 
-/* table th {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    padding-right: 80px;
-} */
-
-car-list {
-    margin-left: 20%;
-}
-
-car-list tr {
-    border: 2px solid red;
+.hide {
+    display: none;
 }

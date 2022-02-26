@@ -9,3 +9,11 @@ tr td {
     padding-left: 20px;
     padding-right: 67px;
 }
+
+.hide {
+    display: none;
+}
+
+.disable {
+    
+}
