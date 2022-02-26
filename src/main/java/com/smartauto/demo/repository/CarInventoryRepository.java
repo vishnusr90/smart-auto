@@ -13,18 +13,18 @@ public interface CarInventoryRepository extends JpaRepository<CarInventory, Stri
         value = "Update car_inventory set remaining = remaining + 1 where car_id=?1",
         nativeQuery = true
     )
-    void incrementCount(String id);
+    void incrementStockByCarId(String id);
 
     @Modifying
     @Query(
         value = "Update car_inventory set remaining = remaining - 1 where car_id=?1 and remaining > 0",
         nativeQuery = true
     )
-    void decrementCount(String id);
+    void decrementStockByCarId(String id);
 
     @Query(
         value = "select remaining from car_inventory where car_id=?1",
         nativeQuery = true
     )
-    int getCarCount(String id); 
+    int getStockCountByCarId(String id); 
 }

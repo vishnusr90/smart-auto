@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.smartauto.demo.repository.entity.Car;
 
-import org.hibernate.query.NativeQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,6 +19,6 @@ public interface CarRepository extends JpaRepository<Car, String> {
     )
     List<Car> findAllAvailableCars();
 
-    Optional<Car> findCarByBrandAndModelAndColorAndYear(String brand, String model, String color, String year);
+    Optional<Car> findCarByBrandAndModelAndColorAndYearAndPrice(String brand, String model, String color, String year, Integer price);
     
 }
