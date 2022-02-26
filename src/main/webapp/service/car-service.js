@@ -17,10 +17,10 @@ export const loadAllCars = async () => {
     return result;
 }
 
-export const buyCar = async (carId) => {
-    await post(`/smart-auto/api/car/buy/${carId}`);
-}
+export const buyCar = async (carId) => await post(`/smart-auto/api/car/buy/${carId}`);
 
-export const deleteCar = async (carId) => {
-    await del(`/smart-auto/api/car/${carId}`);
-}
+export const restockCar = async (carId) => await post(`/smart-auto/api/restock/car/${carId}`);
+
+export const deleteCar = async (carId) =>  await del(`/smart-auto/api/car/${carId}`);
+
+export const addNewCar = async (carDetails) =>  await post(`/smart-auto/api/car`, carDetails);
