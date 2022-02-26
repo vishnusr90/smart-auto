@@ -1,5 +1,6 @@
 package com.smartauto.demo.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import com.smartauto.demo.exception.CarNotFoundException;
+import com.smartauto.demo.exception.InSufficientInfoException;
 import com.smartauto.demo.repository.CarInventoryRepository;
 import com.smartauto.demo.repository.CarRepository;
 import com.smartauto.demo.repository.dto.CarDTO;
@@ -50,7 +54,11 @@ public class InventoryService {
 
     @Transactional
     public void addCar(CarDTO carDTO) {
-        Optional<Car> carOptional = carRepository.findCarByBrandAndModelAndColorAndYear(carDTO.getBrand(), carDTO.getModel(), carDTO.getColor(), carDTO.getYear());
+
+        if (!validateCarObject(carDTO)) {
+            throw new InSufficientInfoException("Insufficent information to add new car");
+        }
+        Optional<Car> carOptional = carRepository.findCarByBrandAndModelAndColorAndYearAndPrice(carDTO.getBrand(), carDTO.getModel(), carDTO.getColor(), carDTO.getYear(), carDTO.getPrice());
 
         if (carOptional.isPresent()) {
             // Increase the inventory 
@@ -63,6 +71,7 @@ public class InventoryService {
                 .model(carDTO.getModel())
                 .price(carDTO.getPrice())
                 .year(carDTO.getYear())
+                .color(carDTO.getColor())
                 .createdOn(LocalDate.now())
                 .build();
             Car savedCar = carRepository.save(car);
@@ -75,13 +84,32 @@ public class InventoryService {
         }
     }
 
+    @Transactional 
+    public void restockCar(String id) {
+        Optional<Car> carOptional = carRepository.findById(id);
+        if (carOptional.isPresent()) {
+            carInventoryRepository.incrementStockByCarId(id);
+        } else {
+            throw new CarNotFoundException("Cannot find this car to restock");
+        }
+    }
+
     @Transactional
     public void deleteCar(String id) {
         Optional<Car> carOptional = carRepository.findById(id);
         if (carOptional.isPresent()) {
             carInventoryRepository.decrementStockByCarId(id);
         } else {
-            System.out.println("Car not present !!!!");
+            throw new CarNotFoundException("Cannot find this car to restock");
         }
+    }
+
+    // Check if all fields are populated from front end
+    private boolean validateCarObject(CarDTO carDTO) {
+        return carDTO != null && 
+         !StringUtils.isBlank(carDTO.getBrand()) &&
+         !StringUtils.isBlank(carDTO.getModel()) &&
+         !StringUtils.isBlank(carDTO.getColor()) &&
+         !StringUtils.isBlank(carDTO.getYear());
     }
 }
