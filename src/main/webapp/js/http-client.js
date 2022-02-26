@@ -1,6 +1,5 @@
 
 export const get = (url, cache = false) => {
-    console.log('cache '+cache);
     return fetchData(url, {
         method: 'GET',
         cache: cache ? 'cache-subsequent' : 'no-cache'
@@ -47,4 +46,10 @@ const handleError = async (response) => {
 
     const error = await asJson(response);
     return Promise.reject(error);
+};
+
+const stringify = (data = {}) => {
+    const type = typeof data;
+    const primitive = ['string', 'number', 'boolean', 'undefined'].includes(type);
+    return primitive ? data : JSON.stringify(data);  
 };
