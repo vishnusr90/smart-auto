@@ -13,5 +13,6 @@ The application shall cater to the below users & their requirements;
 Requirements
 
 Implement the solution as a Spring Boot Microservice. The inventory data shall be in-memory.
-Implement the above use case considering object oriented principles and development best practices. The implementation should be a tested working executable.
+Implement the above use case considering object oriented principles and development best practices. 
+The implementation should be a tested working executable.
 The project codes to be zipped and shared back to us for offline review by Monday, 28 February at 6pm.
