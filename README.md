@@ -29,7 +29,7 @@
     - Hit in browser http://localhost:3000/smart-auto
     - H2 console http://localhost:3000/smart-auto/h2-console
 
-## Stack
+## Tech Stack
     - Front end --> Javascript, HTML, CSS
     - Back end  --> Java, Spring Boot
 
