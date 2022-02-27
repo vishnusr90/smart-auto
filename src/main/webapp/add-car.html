@@ -16,6 +16,11 @@
         <side-nav></side-nav>
         <add-new-car style="padding-left:20px;"></add-new-car>
     </div>
+    <script type="module">
+        document.querySelector('#home-button').addEventListener('click' , () => {
+            return location.href = '/smart-auto';
+        });
+    </script>
     <script type="module" src="./js/components/side-nav/side-nav.js"></script>
     <script type="module" src="./js/components/add-new-car/add-new-car.js"></script>
 </html>
