@@ -77,4 +77,9 @@ public class SalesService {
             throw new CarNotFoundException("Cannot find this car to restock");
         }
     }
+
+
+    public Integer getTotalSalesByCarId(String id) {
+        return salesRepository.getSalesCountByCarId(id);
+    }
 }
