@@ -23,14 +23,12 @@ const htmlTemplate = () => {
 };
 
 export class CarListContainer extends BaseComponent {
-
     constructor() {
         super();
     }
 
     connectedCallback() {
         this.loadEventListeners();
-        
     }
 
     async load() {
@@ -52,7 +50,12 @@ export class CarListContainer extends BaseComponent {
 
         this.on('car-list', 'buy-car', async (e) => {
             const carId = e.detail.id;
-            await buyCar(carId);
+            const response = await buyCar(carId);
+            if (response instanceof ErrorEvent) {
+                alert('Some problem has been encountered. Please try again later');
+            } else {
+                alert('You have bought a new car !');    
+            }
             await this.$$('car-list').load(this.roles);
         });
 

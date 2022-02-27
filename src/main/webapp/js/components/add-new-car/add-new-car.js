@@ -28,7 +28,7 @@ const htmlTemplate = () => {
 
             <div class="row">
                 <div class="heading">Price</div>  
-                <input id="price" type="text" placeholder="Enter price of car"/></br>
+                <input id="price" type="number" placeholder="Enter price of car"/></br>
             </div>
 
             <input id="add-car" type="submit" value="Add"/>  
@@ -39,19 +39,17 @@ const htmlTemplate = () => {
 export class NewCarComponent extends BaseComponent {
     constructor() {
         super();
-        console.log('constructor');
-        (() => {
-            this.load();
+        (async  () => {
+            await this.load();
         })();
     }
 
-    load() {
-        this.init(htmlTemplate());
+    async load() {
+        await this.init(htmlTemplate());
         this.loadEventListeners();
     }
 
     loadEventListeners() {
-        
         this.$$('#add-car').addEventListener('click', async () => {
             const brand = this.$$('#brand').value || '';
             const model = this.$$('#model').value || '';
@@ -65,11 +63,10 @@ export class NewCarComponent extends BaseComponent {
                 color,
                 price
             };
-            console.log(details);
             try {
                 const res = await addNewCar(details);
             } catch(e) {
-                console.log(e);
+                alert('Please enter all the fields');
             }
         });
     }

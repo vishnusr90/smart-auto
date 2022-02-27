@@ -21,11 +21,18 @@ const carRow = (car) => html`
         <td>${car.color}</td>
         <td>$ ${car.price}</td>
         <td id="remaining" class="hide">${car.remaining}</td>
-        <td><button id=${car.id} class="buy">Buy Now</button></td>
-        <td id="delete"><button id=${car.id} class="delete">Delete</button></td>
-        <td id="re-stock"><button id=${car.id} class="re-stock">Re Stock</button></td>
+        ${renderBuyButton(car)}
+        <td id="delete"><button id=${car.id} class="delete">Decrease Stock</button></td>
+        <td id="re-stock"><button id=${car.id} class="re-stock">Increase Stock</button></td>
     </tr>
 `;
+
+const renderBuyButton = (car) => {
+    if (car.remaining > 0) {
+        return html`<td><button id=${car.id} class="buy">Buy Now</button></td>`;
+    }
+    return html`<td></td>`;
+};
 
 export class CarList extends BaseComponent {
     constructor() {
@@ -37,13 +44,12 @@ export class CarList extends BaseComponent {
     }
 
     async load(roles) {
-        console.log('roles ' , roles);
         let carList = await loadAllCars();
-        console.log('cars ', carList);
         this.init(htmlTemplate(carList));
 
         if (roles[0].authority === 'ROLE_ADMIN') {
             this.$$$('.buy').forEach(b => b.classList.add('hide'));
+            this.$$$('.out-of-stock').forEach(b => b.classList.add('hide'));
             this.$$$('#remaining').forEach(r => r.classList.remove('hide'));
         } else {
             this.$$$('.delete').forEach(b => b.classList.add('hide'));
