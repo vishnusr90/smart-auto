@@ -25,4 +25,8 @@ public class MockCarInventory {
             CarInventory.builder().carId("car3").remaining(3).build()
         );
     }
+
+    public static List<CarInventory> buildEmptyCarInventoryList() {
+        return List.of();
+    }
 }

@@ -3,6 +3,7 @@ package com.smartauto.demo.mock;
 import java.util.List;
 import java.util.Optional;
 
+import com.smartauto.demo.repository.dto.CarDTO;
 import com.smartauto.demo.repository.entity.Car;
 
 public class MockCar {
@@ -16,6 +17,10 @@ public class MockCar {
                 .color("red")
                 .price(9876)
                 .build());
+    }
+
+    public static Optional<Car> builEmptyOptionalCar() {
+        return Optional.empty();
     }
 
     public static List<Car> buildCarList() {
@@ -42,5 +47,18 @@ public class MockCar {
                 .color("color3")
                 .build()    
         );
+    }
+
+    public static List<Car> buildEmptyCarList() {
+        return List.of();
+    }
+
+    public static CarDTO buildCarDTO() {
+        return CarDTO.builder()
+            .brand("brand")
+            .model("model")
+            .color("color")
+            .year("year")
+            .build();
     }
 }

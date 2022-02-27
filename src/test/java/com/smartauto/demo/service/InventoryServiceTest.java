@@ -1,8 +1,10 @@
 package com.smartauto.demo.service;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+import com.smartauto.demo.exception.CarNotFoundException;
+import com.smartauto.demo.exception.InSufficientInfoException;
 import com.smartauto.demo.mock.MockCar;
 import com.smartauto.demo.mock.MockCarInventory;
 import com.smartauto.demo.repository.CarInventoryRepository;
@@ -55,7 +57,20 @@ public class InventoryServiceTest {
     }
 
     @Test
-    void testGetCarDetails(){
+    void testGetAllCarsWhenEmpty() {
+        when(carInventoryRepository.findAll())
+            .thenReturn(MockCarInventory.buildEmptyCarInventoryList());
+
+        when(carRepository.findAllById(List.of()))
+            .thenReturn(MockCar.buildEmptyCarList());
+
+        List<CarDTO> carList = inventoryService.getAllCars();
+
+        Assertions.assertEquals(0, carList.size());
+    }
+
+    @Test
+    void testGetCarDetailsWhenPresent(){
         when(carRepository.findById(""))
             .thenReturn(MockCar.buildOptionalCar());
         CarDTO car = inventoryService.getCarDetails("");
@@ -66,5 +81,22 @@ public class InventoryServiceTest {
         Assertions.assertEquals("123", car.getYear());
         Assertions.assertEquals("red", car.getColor());
         Assertions.assertEquals(9876, car.getPrice());
+    }
+
+    @Test
+    void testGetCarDetailsWhenNotPresent(){
+        when(carRepository.findById(""))
+            .thenReturn(MockCar.builEmptyOptionalCar());
+
+        assertThrows(CarNotFoundException.class, () -> {
+            inventoryService.getCarDetails("");
+        });
+    }
+
+    @Test
+    void testAddNewCarWhenInsufficientInfo(){
+        assertThrows(InSufficientInfoException.class, () -> {
+            inventoryService.addCar(null);
+        });
     }
 }   

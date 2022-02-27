@@ -1,8 +1,8 @@
 package com.smartauto.demo.service;
 
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.smartauto.demo.mock.MockCar;
+import com.smartauto.demo.exception.CarNotFoundException;
 import com.smartauto.demo.repository.CarInventoryRepository;
 import com.smartauto.demo.repository.CarRepository;
 import com.smartauto.demo.repository.SalesRepository;
@@ -32,14 +32,9 @@ public class SalesServiceTest {
     private SalesService salesService;
 
     @Test
-    public void testBuyCar() {
-        // when(carRepository.findById(""))
-        //     .thenReturn(MockCar.buildOptionalCar());
-
-        // when(carInventoryRepository.getStockCountByCarId(""))
-        //     .thenReturn(10);
-
-        // when(carInventoryRepository.decrementStockByCarId(""))
-        //     .thenReturn(123);
+    public void testBuyCarWhenCarNotPresent() {
+        assertThrows(CarNotFoundException.class, () -> {
+            salesService.buyCar("", "");
+        });
     }
 }
