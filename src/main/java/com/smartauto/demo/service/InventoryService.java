@@ -39,7 +39,6 @@ public class InventoryService {
 
         List<CarDTO> list = carList.stream()
             .map(car -> {
-                System.out.println(car);
                 return CarDTO.builder()
                     .id(car.getId())
                     .brand(car.getBrand())

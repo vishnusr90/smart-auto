@@ -65,6 +65,11 @@ export class NewCarComponent extends BaseComponent {
             };
             try {
                 const res = await addNewCar(details);
+                if (res instanceof ErrorEvent) {
+                    alert('Error in saving. Please try again later.');
+                } else {
+                    alert('New car added');
+                }
             } catch(e) {
                 alert('Please enter all the fields');
             }
