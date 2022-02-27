@@ -1,5 +1,6 @@
 package com.smartauto.demo.service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import com.smartauto.demo.exception.CarNotFoundException;
@@ -67,6 +68,7 @@ public class SalesService {
                     .builder()
                     .userId(user.getId())
                     .carId(car.getId())
+                    .sold_on(LocalDate.now())
                     .build();
                 
                 salesRepository.save(sales);
