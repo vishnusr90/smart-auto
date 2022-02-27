@@ -30,22 +30,24 @@ public class InventoryService {
     public List<CarDTO> getAllCars() {
         List<CarInventory> carInventoryList = carInventoryRepository.findAll();
         List<String> carIds = carInventoryList.stream()
-            .map(CarInventory::getId)
+            .map(CarInventory::getCarId)
             .collect(Collectors.toList());
-        Map<String, Integer> carRemainingMapping = carInventoryList.stream().collect(Collectors.toMap(CarInventory::getCarId, CarInventory::getRemaining));
+        Map<String, Integer> carRemainingMapping = carInventoryList.stream()
+            .collect(Collectors.toMap(CarInventory::getCarId, CarInventory::getRemaining));
 
 
         List<Car> carList = carRepository.findAllById(carIds);
+        System.out.println(carList);
         List<CarDTO> list = carList.stream()
-            .map(c -> {
+            .map(car -> {
                 return CarDTO.builder()
-                    .id(c.getId())
-                    .brand(c.getBrand())
-                    .model(c.getModel())
-                    .color(c.getColor())
-                    .price(c.getPrice())
-                    .year(c.getYear())
-                    .remaining(carRemainingMapping.get(c.getId()))
+                    .id(car.getId())
+                    .brand(car.getBrand())
+                    .model(car.getModel())
+                    .color(car.getColor())
+                    .price(car.getPrice())
+                    .year(car.getYear())
+                    .remaining(carRemainingMapping.get(car.getId()))
                     .build();
             })
             .collect(Collectors.toList());
@@ -95,7 +97,7 @@ public class InventoryService {
     }
 
     @Transactional
-    public void deleteCar(String id) {
+    public void decrementStock(String id) {
         Optional<Car> carOptional = carRepository.findById(id);
         if (carOptional.isPresent()) {
             carInventoryRepository.decrementStockByCarId(id);
@@ -111,5 +113,21 @@ public class InventoryService {
          !StringUtils.isBlank(carDTO.getModel()) &&
          !StringUtils.isBlank(carDTO.getColor()) &&
          !StringUtils.isBlank(carDTO.getYear());
+    }
+
+    public CarDTO getCarDetails(String id) {
+        Optional<Car> carOptional = carRepository.findById(id);
+        if (carOptional.isPresent()) {
+            Car car = carOptional.get();
+            return CarDTO.builder()
+                    .id(car.getId())
+                    .brand(car.getBrand())
+                    .model(car.getModel())
+                    .color(car.getColor())
+                    .price(car.getPrice())
+                    .year(car.getYear())
+                    .build();
+        }
+        return CarDTO.builder().build();
     }
 }

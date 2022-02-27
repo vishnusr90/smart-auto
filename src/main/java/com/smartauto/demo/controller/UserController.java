@@ -3,7 +3,6 @@ package com.smartauto.demo.controller;
 import java.util.*;
 
 import com.smartauto.demo.repository.dto.UserDTO;
-import com.smartauto.demo.repository.entity.User;
 import com.smartauto.demo.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
