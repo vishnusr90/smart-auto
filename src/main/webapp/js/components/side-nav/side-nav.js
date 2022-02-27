@@ -5,11 +5,6 @@ const htmlTemplate = () => {
         <div style="padding-bottom: 20px;">
             <button id="add-car-button" style="font-size: 16px;">Add New Car</button>
         </div>
-
-        <div style="padding-bottom: 20px;">
-            <button id="sales-button" style="font-size: 16px;">Sales</button>
-        </div>
-
         <div>
             <button id="logout" style="font-size: 16px;">Logout</button>
         </div>
@@ -19,7 +14,6 @@ const htmlTemplate = () => {
 export class SideNav extends BaseComponent {
     constructor() {
         super();
-        console.log('constructor');
         (() => {
             this.load();
         })();
