@@ -10,19 +10,19 @@ CREATE TABLE IF NOT EXISTS CAR (
 );
 
 INSERT INTO CAR (id, brand, model, color, price, year, created_on) 
-VALUES (1, 'BMW', 'X1', 'White', 350000, '2022', now());
+VALUES ('40289db77f39ed87017f39f2d1370040', 'BMW', 'X1', 'White', 350000, '2022', now());
 
 INSERT INTO CAR (id, brand, model, color, price, year, created_on) 
-VALUES (2, 'Audi', 'Q8', 'Red', 150000, '2020', now());
+VALUES ('40289db77f39ed87017f39f2d1370041', 'Audi', 'Q8', 'Red', 150000, '2020', now());
 
 INSERT INTO CAR (id, brand, model, color, price, year, created_on) 
-VALUES (3, 'Benz', 'GLE', 'Blue', 200000, '2021', now());
+VALUES ('40289db77f39ed87017f39f2d137042', 'Benz', 'GLE', 'Blue', 200000, '2021', now());
 
 INSERT INTO CAR (id, brand, model, color, price, year, created_on) 
-VALUES (4, 'Maruti', 'Celerio', 'White', 100000, '1999', now());
+VALUES ('40289db77f39ed87017f39f2d137043', 'Maruti', 'Celerio', 'White', 100000, '1999', now());
 
 INSERT INTO CAR (id, brand, model, color, price, year, created_on) 
-VALUES (5, 'BMW', 'X2', 'Black', 450000, '2022', now());
+VALUES ('40289db77f39ed87017f39f2d137044', 'BMW', 'X2', 'Black', 450000, '2022', now());
 
 -----------------------------------------------------------------------------
 
@@ -37,19 +37,19 @@ ADD FOREIGN KEY (car_id)
 REFERENCES CAR(id);
 
 INSERT INTO CAR_INVENTORY (ID, REMAINING, CAR_ID)
-VALUES (1, 3, SELECT ID FROM CAR WHERE BRAND = 'BMW' and model = 'X1' and color = 'White' and year = '2022');
+VALUES ('40289db77f39ed87017f39f2d1370081', 3, SELECT ID FROM CAR WHERE BRAND = 'BMW' and model = 'X1' and color = 'White' and year = '2022');
 
 INSERT INTO CAR_INVENTORY (ID, REMAINING, CAR_ID)
-VALUES (2, 2, SELECT ID FROM CAR WHERE BRAND = 'Audi' and model = 'Q8' and color = 'Red' and year = '2020');
+VALUES ('40289db77f39ed87017f39f2d1370082', 2, SELECT ID FROM CAR WHERE BRAND = 'Audi' and model = 'Q8' and color = 'Red' and year = '2020');
 
 INSERT INTO CAR_INVENTORY (ID, REMAINING, CAR_ID)
-VALUES (3, 1, SELECT ID FROM CAR WHERE BRAND = 'Benz' and model = 'GLE' and color = 'Blue' and year = '2021');
+VALUES ('40289db77f39ed87017f39f2d1370083', 1, SELECT ID FROM CAR WHERE BRAND = 'Benz' and model = 'GLE' and color = 'Blue' and year = '2021');
 
 INSERT INTO CAR_INVENTORY (ID, REMAINING, CAR_ID)
-VALUES (4, 5, SELECT ID FROM CAR WHERE BRAND = 'Maruti' and model = 'Celerio' and color = 'White' and year = '1999');
+VALUES ('40289db77f39ed87017f39f2d1370084', 5, SELECT ID FROM CAR WHERE BRAND = 'Maruti' and model = 'Celerio' and color = 'White' and year = '1999');
 
 INSERT INTO CAR_INVENTORY (ID, REMAINING, CAR_ID)
-VALUES (5, 4, SELECT ID FROM CAR WHERE BRAND = 'BMW' and model = 'X2' and color = 'Black' and year = '2022');
+VALUES ('40289db77f39ed87017f39f2d1370085', 4, SELECT ID FROM CAR WHERE BRAND = 'BMW' and model = 'X2' and color = 'Black' and year = '2022');
 
 ------------------------------------------------------------------------------
 
@@ -62,16 +62,16 @@ CREATE TABLE IF NOT EXISTS USER (
 );
 
 INSERT INTO USER (id, username, password, firstname, created_on) 
-VALUES (1, 'admin','admin', 'Admin', now());
+VALUES ('40289db77f39ed87017f39f2d1370091', 'admin','admin', 'Admin', now());
 
 INSERT INTO USER (id, username, password, firstname, created_on) 
-VALUES (2, 'user', 'pass', 'User', now());
+VALUES ('40289db77f39ed87017f39f2d1370092', 'user1', 'pass', 'User', now());
 
 INSERT INTO USER (id, username, password, firstname, created_on) 
-VALUES (3, 'user2', 'pass', 'User 2', now());
+VALUES ('40289db77f39ed87017f39f2d1370093', 'user2', 'pass', 'User 2', now());
 
 INSERT INTO USER (id, username, password, firstname, created_on) 
-VALUES (4, 'user3', 'pass', 'User 3', now());
+VALUES ('40289db77f39ed87017f39f2d1370094', 'user3', 'pass', 'User 3', now());
 
 --------------------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS SALES (
