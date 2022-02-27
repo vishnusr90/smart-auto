@@ -26,19 +26,17 @@ export class SideNav extends BaseComponent {
     }
 
     load() {
-        console.log('load side nav');
         this.init(htmlTemplate());
         this.loadEventListeners();
     }
 
     loadEventListeners() {
-        
-        this.$$('#add-car-button').addEventListener('click', () => {
+        this.on('#add-car-button', 'click', () => {
             return location.href = '/smart-auto/add-car.html';
         });
-    
-        this.$$('#logout').addEventListener('click', () => {
-            return location.href = '/smart-auto/logout'
+
+        this.on('#logout', 'click', () => {
+            return location.href = '/smart-auto/logout';
         });
     }
 }
