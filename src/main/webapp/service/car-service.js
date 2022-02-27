@@ -1,8 +1,5 @@
 import { del, get, post } from '../js/http-client.js';
 
-const FETCH_CARS = '/smart-auto/api/cars/';
-
-
 export const loadAllCars = async () => {
     const cars = await get('/smart-auto/api/cars/');
     let result = [];
@@ -17,10 +14,10 @@ export const loadAllCars = async () => {
     return result;
 }
 
-export const buyCar = async (carId) => await post(`/smart-auto/api/car/buy/${carId}`);
+export const buyCar = async (carId) => await post(`/smart-auto/api/sales/cars/buy/${carId}`);
 
-export const restockCar = async (carId) => await post(`/smart-auto/api/restock/car/${carId}`);
+export const restockCar = async (carId) => await post(`/smart-auto/api/cars/restock/${carId}`);
 
-export const deleteCar = async (carId) =>  await del(`/smart-auto/api/car/${carId}`);
+export const deleteCar = async (carId) =>  await del(`/smart-auto/api/cars/${carId}`);
 
-export const addNewCar = async (carDetails) =>  await post(`/smart-auto/api/car`, carDetails);
+export const addNewCar = async (carDetails) =>  await post(`/smart-auto/api/cars/`, carDetails);

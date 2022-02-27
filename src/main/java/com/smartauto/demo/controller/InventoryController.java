@@ -16,32 +16,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/cars")
 public class InventoryController {
 
     @Autowired
     private InventoryService carService;
 
-    @GetMapping("/cars")
+    @GetMapping("/")
     public List<CarDTO> getAllCars() {
         return carService.getAllCars();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/car")
-    public void createCar(@RequestBody CarDTO carDTO) {
+    @PostMapping("/")
+    public void createNewCar(@RequestBody CarDTO carDTO) {
         carService.addCar(carDTO);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/car/{id}")
-    public void deleteCar(@PathVariable String id, Principal user) {
-        carService.deleteCar(id);
+    @DeleteMapping("/{id}")
+    public void decrementStock(@PathVariable String id, Principal user) {
+        carService.decrementStock(id);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/restock/car/{id}")
+    @PostMapping("/restock/{id}")
     public void reStockCar(@PathVariable String id) {
         carService.restockCar(id);
     }
+
+    @GetMapping("/{id}")
+    public CarDTO getStockByCarId(@PathVariable String id) {
+        return carService.getCarDetails(id);
+    }
+
 }
