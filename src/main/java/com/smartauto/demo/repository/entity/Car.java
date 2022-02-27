@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Builder
-@Table(name = "Car")
+@Table(name = "CAR")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Car {

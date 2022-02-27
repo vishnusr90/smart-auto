@@ -5,6 +5,7 @@ import java.security.Principal;
 import com.smartauto.demo.service.SalesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,12 +19,14 @@ public class SalesController {
     @Autowired
     private SalesService salesService;
 
+    @PreAuthorize("hasRole('BUYER')")
     @PostMapping("/cars/buy/{id}")
     public void buyCar(@PathVariable String id, Principal principal) {
         String name = principal.getName();
         salesService.buyCar(id, name);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public Integer getTotalSalesByCarId(@PathVariable String id) {
         return salesService.getTotalSalesByCarId(id);
