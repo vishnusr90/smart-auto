@@ -1,4 +1,4 @@
-CREATE TABLE CAR (
+CREATE TABLE IF NOT EXISTS CAR (
     id varchar(225) primary key,
     brand varchar(10) not null,
     model varchar(10) not null,
@@ -26,7 +26,7 @@ VALUES (5, 'BMW', 'X2', 'Black', 450000, '2022', now());
 
 -----------------------------------------------------------------------------
 
-CREATE TABLE CAR_INVENTORY (
+CREATE TABLE IF NOT EXISTS CAR_INVENTORY (
     id varchar(225) primary key,
     remaining int default 0,
     car_id varchar(225)
@@ -53,7 +53,7 @@ VALUES (5, 4, SELECT ID FROM CAR WHERE BRAND = 'BMW' and model = 'X2' and color 
 
 ------------------------------------------------------------------------------
 
-CREATE TABLE USER (
+CREATE TABLE IF NOT EXISTS USER (
     id varchar(225) primary key,
     username varchar(10) not null,
     password varchar(20) not null,
@@ -74,10 +74,11 @@ INSERT INTO USER (id, username, password, firstname, created_on)
 VALUES (4, 'user3', 'pass', 'User 3', now());
 
 --------------------------------------------------------------------------------------
-CREATE TABLE SALES (
+CREATE TABLE IF NOT EXISTS SALES (
     id varchar(225) primary key,
     user_id varchar(225) not null,
-    car_id varchar(2225) not null
+    car_id varchar(2225) not null,
+    sold_on timestamp
 );
 
 ALTER TABLE SALES

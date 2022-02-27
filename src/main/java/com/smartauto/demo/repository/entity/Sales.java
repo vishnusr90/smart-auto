@@ -1,5 +1,7 @@
 package com.smartauto.demo.repository.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,4 +29,6 @@ public class Sales {
     String carId;
 
     String userId;
+
+    LocalDate sold_on;
 }
