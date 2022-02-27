@@ -2,6 +2,7 @@ package com.smartauto.demo.service;
 
 import java.util.*;
 
+import com.smartauto.demo.exception.InSufficientInfoException;
 import com.smartauto.demo.exception.UserNotFoundException;
 import com.smartauto.demo.repository.UserRepository;
 import com.smartauto.demo.repository.dto.UserDTO;
@@ -27,7 +28,7 @@ public class UserService {
                 .build();
             userRepository.save(user);
         } else {
-
+            throw new InSufficientInfoException("Insufficient information supplied");
         }
     }
 

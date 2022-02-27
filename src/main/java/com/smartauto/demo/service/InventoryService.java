@@ -17,8 +17,6 @@ import com.smartauto.demo.repository.dto.CarDTO;
 import com.smartauto.demo.repository.entity.Car;
 import com.smartauto.demo.repository.entity.CarInventory;
 
-
-// all logs
 @Service
 public class InventoryService {
     @Autowired
@@ -29,17 +27,19 @@ public class InventoryService {
 
     public List<CarDTO> getAllCars() {
         List<CarInventory> carInventoryList = carInventoryRepository.findAll();
+        
         List<String> carIds = carInventoryList.stream()
             .map(CarInventory::getCarId)
             .collect(Collectors.toList());
+
         Map<String, Integer> carRemainingMapping = carInventoryList.stream()
             .collect(Collectors.toMap(CarInventory::getCarId, CarInventory::getRemaining));
 
-
         List<Car> carList = carRepository.findAllById(carIds);
-        System.out.println(carList);
+
         List<CarDTO> list = carList.stream()
             .map(car -> {
+                System.out.println(car);
                 return CarDTO.builder()
                     .id(car.getId())
                     .brand(car.getBrand())
@@ -128,6 +128,6 @@ public class InventoryService {
                     .year(car.getYear())
                     .build();
         }
-        return CarDTO.builder().build();
+        throw new CarNotFoundException("Car does not exist");
     }
 }
