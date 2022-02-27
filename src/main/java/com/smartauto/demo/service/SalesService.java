@@ -32,25 +32,6 @@ public class SalesService {
     @Autowired
     private CarInventoryRepository carInventoryRepository;
 
-    public void getSalesInformation() {
-        // List<Sales> salesList = salesRepository.findAll();
-
-        // List<String> userIds = salesList.stream().map(Sales::getUserId).collect(Collectors.toList());
-
-        // Map<String, User> userMapping =  userRepository
-        //     .findAllById(userIds)
-        //     .stream()
-        //     .collect(Collectors.toMap(User::getId, Function.identity()));
-
-        // salesList.stream()
-        //     .map(s -> {
-        //         return SalesDTO.builder()
-        //             .brand(brand)
-        //             .build();
-        //     })
-    }
-
-
     @Transactional
     public void buyCar(String id, String username) {
         Optional<Car> carOptional = carRepository.findById(id);
@@ -76,10 +57,5 @@ public class SalesService {
         } else {
             throw new CarNotFoundException("Cannot find this car to restock");
         }
-    }
-
-
-    public Integer getTotalSalesByCarId(String id) {
-        return salesRepository.getSalesCountByCarId(id);
     }
 }
