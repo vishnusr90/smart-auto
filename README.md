@@ -1,5 +1,13 @@
 # Car Inventory and Sales Management System
 
+## Assumptions
+    - Both UI and Backend are to be implemented
+    - ADMIN has the ability to add or remove cars from the inventory - This specifies the ability to immediately increment/decrement the 
+        count of the specific car by click of a button
+    - ADMIN also has the ability to add a new type of car to the inventory
+    - BUYER can only view available cars and buy them
+
+
 ## Login Credentials
     - ADMIN
         - username: admin 
@@ -25,9 +33,10 @@
     - Front end --> Javascript, HTML, CSS
     - Back end  --> Java, Spring Boot
 
-### Areas of Improvment
+## Snapshots
 
-- Add front end validations
-- UI polishing
-- Supplier information
-- Payment gateway on buying car
+- Admin Home Page
+![](src/main/resources/images/admin.png)
+
+- Buyer Home Page   
+![](src/main/resources/images/buyer.png)
