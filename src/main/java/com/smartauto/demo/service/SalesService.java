@@ -32,6 +32,9 @@ public class SalesService {
     @Autowired
     private CarInventoryRepository carInventoryRepository;
 
+    /*
+     This method helps the buyer to buy a car
+    */
     @Transactional
     public void buyCar(String id, String username) {
         Optional<Car> carOptional = carRepository.findById(id);

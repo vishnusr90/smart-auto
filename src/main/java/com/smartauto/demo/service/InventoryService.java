@@ -53,6 +53,9 @@ public class InventoryService {
         return list;
     }
 
+    /*
+     This method adds a new type of car to the inventory
+    */
     @Transactional
     public void addCar(CarDTO carDTO) {
 
@@ -85,6 +88,9 @@ public class InventoryService {
         }
     }
 
+    /*
+     This method increases the stock of an existing car
+    */
     @Transactional 
     public void restockCar(String id) {
         Optional<Car> carOptional = carRepository.findById(id);
@@ -95,6 +101,9 @@ public class InventoryService {
         }
     }
 
+    /*
+     This method increases the stock of an existing car
+    */
     @Transactional
     public void decrementStock(String id) {
         Optional<Car> carOptional = carRepository.findById(id);
@@ -105,7 +114,9 @@ public class InventoryService {
         }
     }
 
-    // Check if all fields are populated from front end
+    /*
+     Validation check - verifies if all the entries from front end are valid
+    */
     private boolean validateCarObject(CarDTO carDTO) {
         return carDTO != null && 
          !StringUtils.isBlank(carDTO.getBrand()) &&
@@ -114,6 +125,9 @@ public class InventoryService {
          !StringUtils.isBlank(carDTO.getYear());
     }
 
+    /*
+     Fetches details of a car
+    */
     public CarDTO getCarDetails(String id) {
         Optional<Car> carOptional = carRepository.findById(id);
         if (carOptional.isPresent()) {
