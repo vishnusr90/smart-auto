@@ -19,25 +19,4 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-
-    public void createUser(UserDTO userDTO) {
-        if (userDTO != null) {
-            User user = User.builder()
-                .username(userDTO.getUserName())
-                .password(userDTO.getPassword())
-                .build();
-            userRepository.save(user);
-        } else {
-            throw new InSufficientInfoException("Insufficient information supplied");
-        }
-    }
-
-    public void deleteUser(String id) {
-        Optional<User> userOptional = userRepository.findById(id);  
-        if (userOptional.isPresent()) {
-            userRepository.deleteById(id);
-        } else {
-             throw new UserNotFoundException("User not found");
-        }
-    }
 }

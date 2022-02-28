@@ -25,8 +25,4 @@ public class UserController {
         return authentication.getAuthorities();
     }
 
-    @PostMapping("/create")
-    public void createUser(@RequestBody UserDTO user) {
-        userService.createUser(user);
-    }
 }
