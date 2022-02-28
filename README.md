@@ -40,3 +40,6 @@
 
 - Buyer Home Page   
 ![](src/main/resources/images/buyer.png)
+
+- Database
+![](src/main/resources/images/db.png)
