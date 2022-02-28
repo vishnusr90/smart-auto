@@ -14,17 +14,21 @@ tr td {
     display: none;
 }
 
-.buy {
+.buy button {
     font-weight: bold;
     background-color: lightblue;
 }
 
-.delete {
+.delete button {
     font-weight: bold;
     background-color: rgb(216, 48, 48);
 }
 
-.re-stock {
+.re-stock button {
     font-weight: bold;
     background-color: rgb(35, 233, 68);
+}
+
+.out-of-stock {
+    color: coral;
 }

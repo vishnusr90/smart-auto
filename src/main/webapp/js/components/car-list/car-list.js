@@ -22,16 +22,16 @@ const carRow = (car) => html`
         <td>$ ${car.price}</td>
         <td id="remaining" class="hide">${car.remaining}</td>
         ${renderBuyButton(car)}
-        <td id="delete"><button id=${car.id} class="delete">Decrease Stock</button></td>
-        <td id="re-stock"><button id=${car.id} class="re-stock">Increase Stock</button></td>
+        <td id="delete" class="delete"><button id="delete" data-id=${car.id}>Decrease Stock</button></td>
+        <td id="re-stock" class="re-stock"><button id="re-stock" data-id=${car.id}>Increase Stock</button></td>
     </tr>
 `;
 
 const renderBuyButton = (car) => {
     if (car.remaining > 0) {
-        return html`<td><button id=${car.id} class="buy">Buy Now</button></td>`;
+        return html`<td class="buy"><button id="buy" data-id=${car.id} class="buy">Buy Now</button></td>`;
     }
-    return html`<td></td>`;
+    return html`<td class="out-of-stock">Out of Stock !</td>`;
 };
 
 export class CarList extends BaseComponent {
@@ -59,8 +59,8 @@ export class CarList extends BaseComponent {
 
     loadEventListeners() {
         this.on('button', 'click', (e) => {
-            const buttonType = e.target.classList.value || '';
-            const carId = e.target.getAttribute('id').split('-')[0];
+            const buttonType = e.target.id || '';
+            const carId = e.target.dataset.id || '';
 
             switch(buttonType) {
                 case 'delete':
