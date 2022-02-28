@@ -5,7 +5,7 @@
     - ADMIN has the ability to add or remove cars from the inventory - This specifies the ability to immediately increment/decrement the 
         count of the specific car by click of a button
     - ADMIN also has the ability to add a new type of car to the inventory
-    - BUYER can only view available cars and buy them
+    - BUYER can only view available cars and buy them if inventory exists
 
 
 ## Login Credentials
